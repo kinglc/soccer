@@ -3,21 +3,19 @@
 
   <navi></navi>
   <div class="content">
-    <div class="countries">
-
-    </div>
+    <!--<country></country>-->
   </div>
 </div>
 </template>
 
 <script>
   import Navi from "./nav";
+  import Country from "./country";
   export default {
     name:'predict',
-      components: {Navi},
-      methods:{ turn:function (param) {
-      this.$router.push({path:'/'+param});
-    }
+      components: {Country, Navi},
+      methods:{
+
     }
   }
 </script>
@@ -31,11 +29,6 @@
     width: 100%;
     background-repeat: no-repeat;
   }
-
-  /*a>img:hover, #index-shape:hover, #shape:hover{*/
-    /*cursor: pointer;*/
-  /*}*/
-
 
 
 

@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import jQuery from 'jquery'
+import Global from './components/Global'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
@@ -9,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false
+Vue.prototype.global=Global;
 
 /* eslint-disable no-new */
 new Vue({
