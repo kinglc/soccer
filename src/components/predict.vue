@@ -3,7 +3,7 @@
 
   <navi></navi>
   <div class="content">
-    <!--<country></country>-->
+    <country></country>
   </div>
 </div>
 </template>
@@ -13,8 +13,9 @@
   import Country from "./country";
   export default {
     name:'predict',
-      components: {Country, Navi},
-      methods:{
+    components: {Country, Navi},
+
+    methods:{
 
     }
   }

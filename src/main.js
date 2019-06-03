@@ -10,7 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false
-Vue.prototype.global=Global;
+Vue.prototype.GLOBAL=Global;
 
 /* eslint-disable no-new */
 new Vue({

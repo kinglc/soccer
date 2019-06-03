@@ -18,63 +18,61 @@
 
 <script>
   import "../jquery/jquery-2.1.1.min";
-  import global from "./Global"
   import "../jquery/jquery.svg3dtagcloud.min";
   import * as axios from "axios";
-  // import * as router from "vue-router";
+
   export default {
     name: "index",
-      mounted() {
-          axios({
-              method: 'post',
-              url: 'http://playcall.cn:7999/event/country/list',
-          }).then(function (res) {
-              console.log(res);
-              global.countries = res.data.data;
-              var entries = [];
-              for(var i = 0;i<100; i++) {
-                  // var colors=['#7bc76f','#7bc76f','#7bc76f','#6FA46D','#6FA46D','#496D48'];
-                  // var colors=['#febf18','#febf18','#2f56ae','#049359','#049359','#049359'];
-                  var colors=['#dc2129','#52b15d','#f6a504','#2e81bf','#020c1f']; //Math.random()*5
-                  var entry = {
-                      label: global.countries[i].countryName,
-                      url:'pages/information.html',
-                      fontColor:colors[Math.floor(Math.random()*4)],
-                  };
-                  entries[i]=entry;
-              }
-              var settings = {
-                  entries: entries,//数据
-                  // radius: '90%',
-                  width:400,
-                  height:400,
-                  radiusMin: 75,
-                  bgDraw: false,//是否显示背景
-                  opacityOver: 1.00,
-                  opacityOut: 0.15,
-                  opacitySpeed: 6,
-                  fov: 1000,
-                  speed: 0.3,//旋转的速度
-                  fontSize: '15',//默认字体大小
-                  fontColor: '#7ebb7c',//默认字体颜色
-                  fontWeight: 'bold',//bold
-                  fontStyle: 'normal',//italic
-                  fontStretch: 'normal',//wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded
-                  fontToLowerCase: true,
-                  tooltipFontWeight: 'normal',//bold
-                  tooltipFontStyle: 'normal',//italic
-                  tooltipFontStretch: 'normal',//wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded
-                  tooltipFontToUpperCase: false,
-                  tooltipTextAnchor: 'left',
-                  tooltipDiffX: 0,
-                  tooltipDiffY: 10
-              };
-
-              var svg3DTagCloud = new SVG3DTagCloud(document.getElementById('tags'), settings );
-          }).catch(function (err) {
-              console.log(err);
-          });
-      },
+    mounted() {
+        axios({
+            method: 'post',
+            url: 'http://playcall.cn:7999/event/country/list',
+        }).then((res) => {
+            console.log(res);
+            this.GLOBAL.countries = res.data.data;
+            var entries = [];
+            for (var i = 0; i < 100; i++) {
+                // var colors=['#7bc76f','#7bc76f','#7bc76f','#6FA46D','#6FA46D','#496D48'];
+                // var colors=['#febf18','#febf18','#2f56ae','#049359','#049359','#049359'];
+                var colors = ['#dc2129', '#52b15d', '#f6a504', '#2e81bf', '#020c1f']; //Math.random()*5
+                var entry = {
+                    label: this.GLOBAL.countries[i].countryName,
+                    url: 'pages/information.html',
+                    fontColor: colors[Math.floor(Math.random() * 4)],
+                };
+                entries[i] = entry;
+            }
+            var settings = {
+                entries: entries,//数据
+                // radius: '90%',
+                width:400,
+                height:400,
+                radiusMin: 75,
+                bgDraw: false,//是否显示背景
+                opacityOver: 1.00,
+                opacityOut: 0.15,
+                opacitySpeed: 6,
+                fov: 1000,
+                speed: 0.3,//旋转的速度
+                fontSize: '15',//默认字体大小
+                fontColor: '#7ebb7c',//默认字体颜色
+                fontWeight: 'bold',//bold
+                fontStyle: 'normal',//italic
+                fontStretch: 'normal',//wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded
+                fontToLowerCase: true,
+                tooltipFontWeight: 'normal',//bold
+                tooltipFontStyle: 'normal',//italic
+                tooltipFontStretch: 'normal',//wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded
+                tooltipFontToUpperCase: false,
+                tooltipTextAnchor: 'left',
+                tooltipDiffX: 0,
+                tooltipDiffY: 10
+            };
+            var svg3DTagCloud = new SVG3DTagCloud(document.getElementById('tags'), settings );
+        }).catch((err) => {
+            console.log(err);
+        });
+          },
     methods:{
       toInfo:function () {
         this.$router.push({

@@ -1,20 +1,29 @@
 <template>
     <div id="countries">
-        <div v-for="country in countries">
-            <img src="{{country.imgUrl}}"/>
+
+        <div v-for="item in countries">
+            {{item.countryName}}
+            <img  :src='item.imgUrl' />
         </div>
     </div>
 </template>
 
 <script>
+    import global from "./Global"
     export default {
         name: "country",
-        data:{
-            countries:global.countries,
+        data() {
+            return {
+                countries:this.GLOBAL.countries,
+            }
+        },
+        mounted(){
+            console.log(this.GLOBAL.countries);
+            console.log(this.countries);
         },
         methods:{
 
-        },
+        }
     }
 </script>
 
