@@ -2,8 +2,9 @@
 <div id="predict">
 
   <navi></navi>
-  <div class="content">
-    <country></country>
+  <div id="content">
+    <div class="half" style="float: left;"><country></country></div>
+    <div class="half" style="float: right;"><country></country></div>
   </div>
 </div>
 </template>
@@ -29,6 +30,18 @@
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
+    overflow: hidden;
+    position: absolute;
+  }
+
+  #content {
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 100%;
+  }
+
+  .half{
+    width:50%;
+    height: 100%;
   }
 
 

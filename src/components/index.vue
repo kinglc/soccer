@@ -30,6 +30,10 @@
         }).then((res) => {
             console.log(res);
             this.GLOBAL.countries = res.data.data;
+            if(this.GLOBAL.letter.length===0) {
+                this.GLOBAL.setLetter();
+            }
+            console.log(this.GLOBAL.letter);
             var entries = [];
             for (var i = 0; i < 100; i++) {
                 // var colors=['#7bc76f','#7bc76f','#7bc76f','#6FA46D','#6FA46D','#496D48'];
