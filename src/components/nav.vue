@@ -50,7 +50,18 @@
     }
 </script>
 
-<style scoped>/*导航栏*/
+<style scoped>
+    @font-face {
+        font-family: 'btnFont';
+        src: url('../fonts/btnFont.ttf');  /* Safari, Android, iOS */
+        src: url('../fonts/btnFont.eot') format('embedded-opentype'),/* IE9 Compat Modes */
+        url('../fonts/btnFont.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/btnFont.svg#btnFont') format('svg'); /* Legacy iOS */
+        /*font-weight: bold;*/
+        /*font-style: normal;*/
+    }
+
+/*导航栏*/
 #soccer{
     height: 100px;
     margin-top: -15px;
@@ -62,8 +73,9 @@
     text-align: center;
     vertical-align: middle;
     font-family: "manu";
-    font-size: 3rem;
-    line-height: 1.5;
+    font-size: 2.5rem;
+    line-height: 1.8;
+    /*text-shadow: 2px 2px 1px #303030;*/
 }
 .el-col{
     padding: 20px 0 0 0;
@@ -89,16 +101,16 @@
 }
 
 #shape {
-    stroke-width: 6px;
+    stroke-width: 8px;
     fill: transparent;
     stroke: #ffffff;/* 放上去之前的颜色 */
-    stroke-dasharray: 240 400;
-    stroke-dashoffset: -310;
+    stroke-dasharray: 220 400;
+    stroke-dashoffset: -320;
     transition: 1s all ease;
 }
 
 #index-shape {
-    stroke-width: 6px;
+    stroke-width: 8px;
     fill: transparent;
     stroke: white;/* 主页放上去之前的颜色 */
     stroke-dasharray: 140 400;
@@ -112,11 +124,12 @@
     text-align: center;
     z-index: 1000;
     color: white;
+    font-family: btnFont;
 }
 
 .svg-wrapper:hover #shape {
     stroke-dasharray: 30 0;
-    stroke-width: 5px;/* 放上去之后边框的宽度 */
+    stroke-width: 6px;/* 放上去之后边框的宽度 */
     stroke-dashoffset: 0;
     stroke: #f0e352;/* 放上去之后边框的颜色 */
 }
@@ -128,7 +141,7 @@
 
 .svg-wrapper:hover #index-shape {
     stroke-dasharray: 30 0;
-    stroke-width: 5px;/* 主页放上去之后边框的宽度 */
+    stroke-width: 6px;/* 主页放上去之后边框的宽度 */
     stroke-dashoffset: 0;
     stroke: #f0e352;/* 主页放上去之后边框的颜色 */
 }
