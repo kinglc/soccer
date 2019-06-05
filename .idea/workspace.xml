@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cd597ac7-9815-4e74-9d5c-895b9563ab25" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/components/country.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/country.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/nav.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,8 +33,8 @@
       <file leaf-file-name="country.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/country.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="113" column="19" selection-start-line="113" selection-start-column="19" selection-end-line="113" selection-end-column="19" />
+            <state relative-caret-position="269">
+              <caret line="120" column="8" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -233,7 +232,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56822000" />
+    <option name="totallyTimeSpent" value="59493000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -641,8 +640,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/country.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="113" column="19" selection-start-line="113" selection-start-column="19" selection-end-line="113" selection-end-column="19" />
+        <state relative-caret-position="269">
+          <caret line="120" column="8" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="8" />
         </state>
       </provider>
     </entry>

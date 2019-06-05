@@ -4,7 +4,7 @@
             <div class="nowl" @click="showSelect">{{nowl}}</div>
                 <transition name="el-zoom-in-center">
                     <div v-show="select" class="transition-box">
-                        <span @click="change(index)" class="select-item" v-for="item,index in letters">
+                        <span @click="change(index)" class="select-item" v-for="(item,index) in letters">
                             {{item.c}}
                         </span>
                     </div>
@@ -39,6 +39,7 @@
             change:function (index) {
                 this.countries = this.GLOBAL.countries.slice(this.letters[index].beg,this.letters[index].end);
                 this.nowl = this.letters[index].c;
+                this.select=false;
             }
 
         }
@@ -76,18 +77,17 @@
     .transition-box{
         position: fixed;
         margin-left: 15%;
+        z-index: 1000;
     }
 
     .nowl{
-        /*font-family: "MV Boli";*/
         font-size: 3.4rem;
         font-weight: bold;
         color: #303030;
-        text-align: center;
-        /*text-shadow: 2px 2px 1px #303030;*/
         box-shadow: 3px 3px 5px #303030;
         background-color: #f0e352;
         width: 70px;
+        text-align: center;
         height: 70px;
         border-radius: 40px;
         border: 5px solid #fff;
@@ -108,15 +108,17 @@
     }
 
     .select-item{
-        font-family: Consolas;
         font-size: 1.5rem;
         text-align: center;
+        width: 1.6rem;
+        margin: 0 auto;
+        font-family: Consolas;
         padding: 0;
     }
 
-    .select-item:hover{
+    .select-item:hover {
         cursor: pointer;
-        background-color: #7bc76f;
+        color: #7bc76f;
         border-radius: 5px;
     }
 </style>
