@@ -12,7 +12,7 @@
         </div>
 
         <div id="countries">
-            <div class="country" v-for="item in countries">
+            <div class="country" v-for="item in countries" @click="setCountry(item)">
                 <img :src='item.imgUrl' />
                 <div class="name"> {{item.countryName}}</div>
             </div>
@@ -43,6 +43,9 @@
                 this.countries = this.GLOBAL.countries.slice(this.letters[index].beg,this.letters[index].end);
                 this.nowl = this.letters[index].c;
                 this.select=false;
+            },
+            setCountry:function (item) {
+                this.$emit("getCountry",item);
             }
 
         }

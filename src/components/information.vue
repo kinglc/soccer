@@ -2,7 +2,7 @@
     <div id="info">
         <div id="head">
             <el-row>
-                <el-col :span="3"><a @click="turn('index')"><img src="../img/soccer.png" alt="soccer" id="soccer"></a> </el-col>
+                <el-col :span="3"><a @click="turn('index')"><img src="../../static/soccer.png" alt="soccer" id="soccer"></a> </el-col>
                 <el-col :span="6">
                     <div class="svg-wrapper" @click="turn('index')">
                         <svg height="70" width="240" xmlns="http://www.w3.org/2000/svg">
@@ -225,7 +225,7 @@
 
 <style scoped>
     #info{
-        background-image: url("../img/bg.png");
+        background-image: url("../../static/bg.png");
         background-repeat: no-repeat;
         background-size: cover;
         width: 100%;

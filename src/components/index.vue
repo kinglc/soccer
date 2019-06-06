@@ -1,7 +1,7 @@
 <template>
   <div id="index">
     <div id="title">
-      <img src="../img/countries.png" style="width: 100%;margin: 0;">
+      <img src="../../static/countries.png" style="width: 100%;margin: 0;">
       <span style="color: #7bc76f">SOCCER</span>
       <span style="color: white">GAME&nbsp;&nbsp;&nbsp;&nbsp;</span>
     </div>
@@ -11,7 +11,7 @@
     </span>
     <span class="half" style="float: right;" title>
         <span><el-button @click="toPre" style="color: #7bc76f">模拟比赛</el-button></span>
-        <img @click="toPre" src="../img/predict.png"/>
+        <img @click="toPre" src="../../static/predict.png"/>
     </span>
   </div>
 </template>
