@@ -3,49 +3,56 @@
 
   <navi></navi>
   <div id="content">
-    <div class="half" style="float: left;"><country v-on:getCountry="setLeft"></country></div>
+    <div class="half" style="float: left;"><team v-on:getTeam="setLeft"></team></div>
     <div class="select">
-      <div class="country">
-        <img :src='leftCountry.imgUrl' />
-        <div class="name">{{leftCountry.countryName}} </div>
+      <div class="team">
+        <div class="type">{{typel}}</div>
+        <img :src='leftTeam.imgUrl' />
+        <div class="name">{{leftTeam.teamName}} </div>
       </div>
-      <div class="country">
-        <img :src='rightCountry.imgUrl' />
-        <div class="name">{{rightCountry.countryName}} </div>
+      <div class="team">
+        <div class="type">{{typer}}</div>
+        <img :src='rightTeam.imgUrl' />
+        <div class="name">{{rightTeam.teamName}} </div>
+      </div>
+      <div class="select">
+
       </div>
     </div>
-    <div class="half" style="float: right;margin-right: 20px;"><country v-on:getCountry="setRight"></country></div>
+    <div class="half" style="float: right;margin-right: 20px;"><team v-on:getTeam="setRight"></team></div>
   </div>
 </div>
 </template>
 
 <script>
   import Navi from "./nav";
-  import Country from "./country";
+  import Team from "./team";
   export default {
     name:'predict',
-    components: {Country, Navi},
+    components: {Team, Navi},
     data(){
         return{
-          leftCountry:{
-              countryName:'请选择国家',
-              imgUrl:'../../static/bg.png'
-          },
-          rightCountry:{
-              countryName:'请选择国家',
+          leftTeam:{
+              teamName:'请选择国家',
               imgUrl:'../../static/flag.png'
           },
+          rightTeam:{
+              teamName:'请选择国家',
+              imgUrl:'../../static/flag.png'
+          },
+          typel:'主',
+          typer:'客',
       }
     },
     methods:{
         setLeft:function (data) {
             console.log(data);
-            this.leftCountry=data;
+            this.leftTeam=data;
         },
 
         setRight:function (data) {
             console.log(data);
-            this.rightCountry=data;
+            this.rightTeam=data;
         },
 
     }
@@ -53,6 +60,15 @@
 </script>
 
 <style scoped>
+  @font-face {
+    font-family: 'btnFont';
+    src: url('../fonts/btnFont.ttf');  /* Safari, Android, iOS */
+    src: url('../fonts/btnFont.eot') format('embedded-opentype'),/* IE9 Compat Modes */
+    url('../fonts/btnFont.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/btnFont.svg#btnFont') format('svg'); /* Legacy iOS */
+    /*font-weight: bold;*/
+    /*font-style: normal;*/
+  }
 
   #predict{
     background-image: url("../../static/bg.png");
@@ -82,6 +98,19 @@
     width: 20%;
     left: 40%;
     position: fixed;
+    text-align: center;
+  }
+
+  .select .team{
+    width: 50%;
+    float: left;
+  }
+
+  .select .type{
+    text-align: center;
+    color: #acf0ae;
+    font-size: 3rem;
+    font-family: btnFont;
   }
 
   .select img{

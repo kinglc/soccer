@@ -11,10 +11,10 @@
                 </transition>
         </div>
 
-        <div id="countries">
-            <div class="country" v-for="item in countries" @click="setCountry(item)">
+        <div id="teams">
+            <div class="team" v-for="item in teams" @click="setTeam(item)">
                 <img :src='item.imgUrl' />
-                <div class="name"> {{item.countryName}}</div>
+                <div class="name"> {{item.teamName}}</div>
             </div>
         </div>
     </div>
@@ -22,11 +22,11 @@
 
 <script>
     export default {
-        name: "country",
+        name: "team",
         data() {
             return {
                 letters:this.GLOBAL.letter,
-                countries: [],
+                teams: [],
                 nowl: '',
                 select:false,
 
@@ -40,12 +40,12 @@
                 this.select=!this.select;
             },
             change:function (index) {
-                this.countries = this.GLOBAL.countries.slice(this.letters[index].beg,this.letters[index].end);
+                this.teams = this.GLOBAL.teams.slice(this.letters[index].beg,this.letters[index].end);
                 this.nowl = this.letters[index].c;
                 this.select=false;
             },
-            setCountry:function (item) {
-                this.$emit("getCountry",item);
+            setTeam:function (item) {
+                this.$emit("getTeam",item);
             }
 
         }
@@ -106,7 +106,7 @@
         border-radius: 5px;
     }
 
-    #countries{
+    #teams{
         width: 30rem;
         height: 80%;
         padding: 20px;
@@ -117,22 +117,22 @@
         overflow-y: scroll;
     }
 
-    #countries::-webkit-scrollbar{
+    #teams::-webkit-scrollbar{
         width: 10px;
         height: 10px;
     }
-    #countries::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    #teams::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 5px rgba(205, 238, 211, 0.6);
         background: #ecfff0;
     }
-    #countries::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    #teams::-webkit-scrollbar-track {/*滚动条里面轨道*/
         -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
         border-radius: 10px;
         background: rgba(0,0,0,0.2);
     }
 
-    .country{
+    .team{
         width: 6rem;
         height: 5.5rem;
         padding: 10px;
@@ -141,7 +141,7 @@
         display: table-cell;
     }
 
-    .country:hover{
+    .team:hover{
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0.35);
         border-radius: 6px;
@@ -152,12 +152,12 @@
         -o-transform:scale(1.1);
     }
 
-    .country img{
+    .team img{
         width: 6rem;
         /*height: 4rem;*/
     }
 
-    .country .name{
+    .team .name{
         text-align: center;
         color: #fff;
         font-size:0.7rem;

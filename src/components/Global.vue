@@ -5,13 +5,13 @@
 <script>
     export default {
         name: "global",
-        countries: [],
+        teams: [],
         letter:[],
         setLetter:function () {
             var c = 'A';
             var l = 0,r;
-            for (var i = 0; i < this.countries.length; i++) {
-                if (this.countries[i].countryName.charAt(0) !== c) {
+            for (var i = 0; i < this.teams.length; i++) {
+                if (this.teams[i].teamName.charAt(0) !== c) {
                     r = i;
                     var tmp = {
                         beg: l,
@@ -20,10 +20,10 @@
                     };
                     this.letter.push(tmp);
                     l = i;
-                    c=String.fromCharCode(c.charCodeAt(0)+1);
+                    c=this.teams[i].teamName.charAt(0);
                 }
             }
-            this.letter[23]={beg:0,end:0,c:'X'};
+            this.letter[24]={beg:l,end:this.teams.length,c:'Z'};
         }
     }
 </script>
