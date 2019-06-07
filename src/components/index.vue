@@ -1,7 +1,7 @@
 <template>
   <div id="index">
     <div id="title">
-      <img src="../img/countries.png" style="width: 100%;margin: 0;">
+      <img src="../../static/countries.png" style="width: 100%;margin: 0;">
       <span style="color: #7bc76f">SOCCER</span>
       <span style="color: white">GAME&nbsp;&nbsp;&nbsp;&nbsp;</span>
     </div>
@@ -11,7 +11,7 @@
     </span>
     <span class="half" style="float: right;" title>
         <span><el-button @click="toPre" style="color: #7bc76f">模拟比赛</el-button></span>
-        <img @click="toPre" src="../img/predict.png"/>
+        <img @click="toPre" src="../../static/predict.png"/>
     </span>
   </div>
 </template>
@@ -26,10 +26,11 @@
     mounted() {
         axios({
             method: 'post',
-            url: 'http://playcall.cn:7999/event/country/list',
+            url: 'http://playcall.cn:7999/event/team/list',
         }).then((res) => {
             console.log(res);
-            this.GLOBAL.countries = res.data.data;
+            this.GLOBAL.teams = res.data.data;
+            this.GLOBAL.teams[0].teamName="Aland Islands";
             if(this.GLOBAL.letter.length===0) {
                 this.GLOBAL.setLetter();
             }
@@ -40,7 +41,7 @@
                 // var colors=['#febf18','#febf18','#2f56ae','#049359','#049359','#049359'];
                 var colors = ['#dc2129', '#52b15d', '#f6a504', '#2e81bf', '#020c1f']; //Math.random()*5
                 var entry = {
-                    label: this.GLOBAL.countries[i].countryName,
+                    label: this.GLOBAL.teams[i].teamName,
                     url: 'pages/information.html',
                     fontColor: colors[Math.floor(Math.random() * 4)],
                 };
