@@ -51,10 +51,10 @@
                         <span class="demonstration">选择队伍：</span>
                         <el-select v-model="country" label-in-value="true" filterable placeholder="请选择" @change="selectTeam">
                             <el-option
-                                    v-for="item in options"
+                                    v-for="(item,index) in options"
                                     :key="item.id"
                                     :label="item.name"
-                                    :value="item.id">
+                                    :value="index">
                             </el-option>
                         </el-select>
                     </div>
@@ -63,13 +63,14 @@
                         <el-date-picker
                                 v-model="year"
                                 type="year"
-                                placeholder="1972-2008"
+                                formaat="yyyy"
+                                placeholder="请选择"
                                 @change="selectTime">
                         </el-date-picker>
                     </div>
                 </el-col>
                 <el-col :span="11" id="right">
-                    <div class="echart"  id="chart"  ref="chart">
+                    <div  class="echart"  id="chart"  ref="chart">
 
                     </div>
                 </el-col>
@@ -82,14 +83,16 @@
 
 
 <script>
+    import * as axios from "axios";
+
     const echarts = require('echarts');
     var URL = 'http://playcall.cn:7999/event';
     export default {
         name: "information",
         data(){
             return{
-                year: '2008',
-                msg: true,
+                year: '',
+                isShow: false,
                 options: [],
                 country: '',
                 countryId: '',
@@ -102,44 +105,78 @@
             },
 
             selectTeam (item) {
-                console.log(item);
-                vue.imageUrl =vue.options[item-1].url;
-                vue.countryId = vue.options[item-1].id;
-                if(vue.year) {
-                    $.ajax({
+                var that=this
+                that.imageUrl =that.options[item].url;
+                that.countryId = that.options[item].id;
+                if(that.year) {
+                    console.log(that.year.getFullYear())
+                    axios({
                         url: URL + "/team/historyGameData",
                         type: 'POST',
                         contentType: 'application/json',
-                        contry: vue.countryId,
-                        time: vue.year,
-                        success(res) {
-
-                        },
-                        error(res) {
-                            console.log(res);
-                            vue.$message.error('数据获取失败，请检查网络信息');
+                        data:{
+                            country: that.countryId,
+                            time: that.year.getFullYear()
                         }
+                    }).then((res)=>{
+                        console.log(res)
+                        that.isShow=true
+                        that.initCharts();//初始化柱状图
+                    }).catch((err)=>{
+                        console.log(res);
+                        that.$message.error('数据获取失败，请检查网络信息');
                     })
+                    // $.ajax({
+                    //     url: URL + "/team/historyGameData",
+                    //     type: 'POST',
+                    //     contentType: 'application/json',
+                    //     contry: that.countryId,
+                    //     time: that.year,
+                    //     success(res) {
+                    //         console.log(res)
+                    //     },
+                    //     error(res) {
+                    //         console.log(res);
+                    //         that.$message.error('数据获取失败，请检查网络信息');
+                    //     }
+                    // })
                 }
             },
             selectTime () {
-                var time = vue.year.getTime()/1000;
-                console.log(time);
-                if(vue.countryId) {
-                    $.ajax({
+                var that=this
+                console.log(that.year.getFullYear())
+                // var time = that.year.getTime()/1000;
+                // console.log(time);
+                if(that.countryId) {
+                    axios({
                         url: URL + "/team/historyGameData",
                         type: 'POST',
                         contentType: 'application/json',
-                        contry: vue.countryId,
-                        time: vue.year,
-                        success(res) {
-
-                        },
-                        error(res) {
-                            console.log(res);
-                            vue.$message.error('数据获取失败，请检查网络信息');
+                        data:{
+                            country: that.countryId,
+                            time: that.year.getFullYear()
                         }
+                    }).then((res)=>{
+                        console.log(res)
+                        that.isShow=true
+                    }).catch((err)=>{
+                        console.log(res);
+                        that.$message.error('数据获取失败，请检查网络信息');
                     })
+                    // $.ajax({
+                    //     url: URL + "/team/historyGameData",
+                    //     type: 'POST',
+                    //     contentType: 'application/json',
+                    //     contry: that.countryId,
+                    //     time: that.year,
+                    //     success(res) {
+                    //
+                    //     },
+                    //     error(res) {
+                    //         console.log(res);
+                    //         that.$message.error('数据获取失败，请检查网络信息');
+                    //     }
+                    // })
                 }
             },
             initCharts () {
@@ -195,30 +232,29 @@
             }
         },
         mounted () {
-            this.initCharts();//初始化柱状图
+            var that=this
+            // that.initCharts();//初始化柱状图
 
-            $.ajax({
-                url: URL+'/country/list',
-                type: 'POST',
-                contentType:'application/json',
-                success(res){
-                    console.log(res);
-                    var entries = [];
-                    for(var i = 0;i<100; i++) {
-                        var entry = {
-                            name: res.data[i].countryName,
-                            url:res.data[i].imgUrl,
-                            id:res.data[i].countryId
-                        };
-                        entries[i]=entry;
-                        vue.options.push(entries[i]);
+            axios({
+                method: 'post',
+                url: 'http://playcall.cn:7999/event/country/list',
+            }).then((res) => {
+                console.log(res.data);
+                var entries = [];
+                for(var i = 0;i<100; i++) {
+                    var entry = {
+                        name: res.data.data[i].countryName,
+                        url: res.data.data[i].imgUrl,
+                        id: res.data.data[i].countryId
                     };
-                },
-                error(res){
-                    console.log(res);
-                    vue.$message.error('数据初始化失败，请检查网络信息');
+                    entries[i] = entry;
+
+                    that.options.push(entries[i]);
                 }
-            })
+            }).catch((err) => {
+                console.log(err);
+                that.$message.error('数据初始化失败，请检查网络信息');
+            });
         }
     }
 </script>
@@ -226,11 +262,15 @@
 <style scoped>
     #info{
         background-image: url("../img/bg.png");
-        background-repeat: no-repeat;
-        background-size: cover;
+        /*background-size: cover;*/
+        /*background-attachment: fixed;*/
+        background-size:100% 100%;
+        height: 100%;
         width: 100%;
-        height:100%;
-        background-attachment: fixed;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        position: absolute;
+        color: #FFFFFF;
     }
     body{
         width: 100%;
