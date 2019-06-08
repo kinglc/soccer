@@ -40,7 +40,7 @@
         </div>
         <el-main>
             <el-row>
-                <el-col :span="12" id="left">
+                <el-col :span="10" id="left">
                     <div class="teamPic">
                         <div class="occupy">
                             <img v-if="imageUrl" :src="imageUrl" class="avatar">
@@ -48,12 +48,12 @@
                         </div>
                     </div>
                     <div class="container">
-                        <span class="demonstration">选择国家：</span>
-                        <el-select v-model="country" label-in-value="true" filterable placeholder="请选择" @change="selectTeam">
+                        <span class="demonstration">选择队伍：</span>
+                        <el-select v-model="team" label-in-value="true" filterable placeholder="请选择" @change="selectTeam">
                             <el-option
                                     v-for="(item,index) in options"
-                                    :key="item.id"
-                                    :label="item.name"
+                                    :key="item.teamId"
+                                    :label="item.teamName"
                                     :value="index">
                             </el-option>
                         </el-select>
@@ -69,10 +69,29 @@
                         </el-date-picker>
                     </div>
                 </el-col>
-                <el-col :span="11" id="right">
-                    <div  class="echart"  id="chart"  ref="chart">
+                <el-col :span="10" id="right">
+                    <!--<el-radio-group v-model="tabContent" style="margin-bottom: 30px;">-->
+                        <!--<el-radio-button label="left">基础数据</el-radio-button>-->
+                        <!--<el-radio-button label="right">比赛情况</el-radio-button>-->
+                    <!--</el-radio-group>-->
+                    <el-tabs v-model="activeName" type="card">
+                        <el-tab-pane label="基础数据" name="first">
+                            <div v-if="isShow==true">
+                                请选择队伍和年份
+                            </div>
+                            <div  class="echart"  id="chart"  ref="chart">
 
-                    </div>
+                            </div>
+                        </el-tab-pane>
+                        <el-tab-pane label="比赛情况" name="second">
+                            <div v-if="isShow">
+                                请选择队伍和年份
+                            </div>
+                            <div id="detail">
+
+                            </div>
+                        </el-tab-pane>
+                    </el-tabs>
                 </el-col>
             </el-row>
         </el-main>
@@ -83,7 +102,8 @@
 
 
 <script>
-    import * as axios from "axios";
+    import * as axios from "axios"
+    import qs from 'qs'
 
     const echarts = require('echarts');
     export default {
@@ -91,11 +111,14 @@
         data(){
             return{
                 year: '',
-                isShow: false,
+                isShow: true,
                 options: [],
-                country: '',
-                countryId: '',
-                imageUrl: ''
+                team: '',
+                teamId: '',
+                imageUrl: '',
+                gameInfo:{},
+                tabContent:"left",
+                activeName: 'first'
             }
         },
         methods:{
@@ -106,26 +129,25 @@
 
             selectTeam (item) {
                 var that=this
-                that.imageUrl =that.options[item].url;
-                that.countryId = that.options[item].id;
+                that.imageUrl =that.options[item].imgUrl;
+                that.teamId = that.options[item].teamId;
                 if(that.year) {
                     var year=that.year.getFullYear()
                     let data={
-                        country: that.countryId,
+                        team: that.teamId,
                         time: year
                     }
                     axios({
                         url: "http://playcall.cn:7999/event/team/historyGameData",
-                        data:data,
+                        data:qs.stringify(data),
                         method: 'post',
-                        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+                        headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'}
                     }).then((res)=>{
-                        console.log("Succees")
-                        console.log(res)
-                        that.isShow=true
+                        that.gameInfo=res.data.data
+                        console.log(gameInfo)
                         that.initCharts();//初始化柱状图
+                        that.isShow=false
                     }).catch((err)=>{
-                        console.log("Fail")
                         console.log(res);
                     })
                 }
@@ -134,27 +156,28 @@
                 var that=this
                 var year=that.year.getFullYear()
                 let data={
-                    country: that.countryId,
+                    team: that.teamId,
                     time: year
                 }
-                if(that.countryId) {
+                if(that.teamId) {
                     axios({
                         url: "http://playcall.cn:7999/event/team/historyGameData",
                         method: 'post',
-                        data:data,
-                        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+                        data:qs.stringify(data),
+                        headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'}
                     }).then((res)=>{
-                        console.log("Succees")
                         console.log(res)
-                        that.isShow=true
+                        that.gameInfo=res.data.data
+                        console.log(that.gameInfo)
                         that.initCharts();//初始化柱状图
+                        that.isShow=false
                     }).catch((err)=>{
-                        console.log("Fail")
                         console.log(res);
                     });
                 }
             },
             initCharts () {
+                var that=this
                 let myChart = echarts.init(this.$refs.chart);
                 // 绘制图表
                 myChart.setOption({
@@ -162,8 +185,9 @@
                         show: true
                     },
                     legend: {
+                        x:'left',
                         data:[
-                            '本队','ECharts1 - 2w数据','ECharts1 - 20w数据'
+                            '总数','平均数','全年数'
                         ]
                     },
                     toolbox: {
@@ -190,43 +214,32 @@
                         {
                             "name":"平均值",
                             "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
+                            "data":[that.gameInfo.averageScore, that.gameInfo.averageHomeWins, that.gameInfo.averageAwayWins,
+                                that.gameInfo.averageNeutrals, that.gameInfo.averageMarginScore]
                         },
                         {
                             "name":"本年",
                             "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
+                            "data":[that.gameInfo.thisYearScore, that.gameInfo.thisYearHomeWins, that.gameInfo.thisYearAwayWins,
+                                that.gameInfo.thisYearNeutrals, that.gameInfo.thisYearMarginScore]
                         },
                         {
                             "name":"总数",
                             "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
+                            "data":[that.gameInfo.totalScore, that.gameInfo.totalHomeWins, that.gameInfo.totalAwayWins,
+                                that.gameInfo.totalNeutrals, that.gameInfo.totalMarginScore]
                         }
-                    ]
+                    ],
+                    grid:{
+                        x:30,
+                        x2:10,
+                    }
                 });
             }
         },
         mounted () {
             var that=this
-            axios({
-                method: 'post',
-                url: 'http://playcall.cn:7999/event/country/list',
-            }).then((res) => {
-                console.log(res.data);
-                var entries = [];
-                for(var i = 0;i<100; i++) {
-                    var entry = {
-                        name: res.data.data[i].countryName,
-                        url: res.data.data[i].imgUrl,
-                        id: res.data.data[i].countryId
-                    };
-                    entries[i] = entry;
-
-                    that.options.push(entries[i]);
-                }
-            }).catch((err) => {
-                console.log(err);
-            });
+            that.options=that.GLOBAL.teams
         }
     }
 </script>
@@ -274,18 +287,28 @@
         text-align: center;
         vertical-align: middle;
         font-family: "manu";
-        font-size: 3rem;
-        line-height: 1.5;
+        font-size: 2.5rem;
+        line-height: 1.8;
+    }
+    #head .el-col{
+        padding: 20px 0 0 0;
     }
     /*下半部*/
     .el-main{
         padding: 0 0 5% 5%;
         font-size: 1.5rem;
         overflow: visible;
+        height: 100%;
+    }
+    #left{
+        padding-top: 3%;
+        padding-left: 7%;
+        height: 100%;
+        margin: 0 auto;
     }
     .container{
         text-align: center;
-        margin: 20px;
+        margin: 50px;
     }
     /*国旗图片*/
     .teamPic{
@@ -313,10 +336,27 @@
         display: block;
     }
 
+    #right{
+        height: 100%;
+        /*background-color: rgba(255,255,255);*/
+        margin-top: 2%;
+    }
+    el-tabs{
+        height: 100%;
+    }
+    .el-tabs >>> .el-tabs__nav{
+        background-color: #ffffff;
+    }
+
+    .el-tabs >>> .el-tabs__content{
+        background-color: #ffffff;
+    }
     .echart{
         height: 400px;
     }
-
+    #detail{
+        height: 400px;
+    }
     .svg-wrapper {
         margin-top: 0;
         position: relative;
