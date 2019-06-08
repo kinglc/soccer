@@ -51,7 +51,7 @@
         </el-select>
       </div>
       <div class="selectitem" @change="setType">
-        <el-radio v-model="type" label="1" border selected>主客场</el-radio>
+        <el-radio v-model="type" label="1" border>主客场</el-radio>
         <el-radio v-model="type" label="0" border>友谊赛</el-radio>
       </div>
       <div class="selectitem">
@@ -67,7 +67,7 @@
   import Navi from "./nav";
   import Team from "./team";
   import * as axios from "axios";
-  // import "http://unpkg.com/element-ui@1.3.5/lib/theme-default/index.css";
+  import qs from 'qs';
 
   export default {
     name:'predict',
@@ -83,7 +83,7 @@
               teamName:'请选择队伍',
               imgUrl:'../../static/flag.png'
           }],
-          types:["主","客"],
+          types:["友","谊"],
           type:-1,
           countries:[],
           countryId:'',
@@ -91,6 +91,7 @@
           cityId:'',
           tournaments:[],
           tournamentId:'',
+               
       }
     },
     mounted(){
@@ -118,12 +119,16 @@
     methods:{
         setLeft:function (data) {
             console.log(data);
-            this.teams[0]=data;
+            this.teams[0].teamId=data.teamId;
+            this.teams[0].teamName=data.teamName;
+            this.teams[0].imgUrl=data.imgUrl;
         },
 
         setRight:function (data) {
             console.log(data);
-            this.teams[1]=data;
+            this.teams[1].teamId=data.teamId;
+            this.teams[1].teamName=data.teamName;
+            this.teams[1].imgUrl=data.imgUrl;
         },
 
         setCountry:function () {
@@ -137,12 +142,16 @@
         },
 
         setType:function () {
-            console.log(this.type);
+            var types = document.getElementsByClassName('type');1
             if(this.type==="0"){
                 this.types=["友","谊"];
+                types[0].style.color="#acf0ae";
+                types[1].style.color="#acf0ae";
             }
             else if(this.type==="1"){
                 this.types=["主","客"];
+                types[0].style.color="#D21034";
+                types[1].style.color="#00247D";
             }
         },
 
@@ -178,25 +187,38 @@
                     type: 'warning'
                 });
             }else{
-                let data = {
-                    parse: {
-                        "tournament": this.tournamentId,
-                        "homeTeam": this.teams[0].teamId,
-                        "awayTeam": this.teams[1].teamId,
-                        "country": this.countryId,
-                        "city": this.cityId,
-                        "neutral": this.type,
-                    }
+                let data={
+                    parse: '{"tournament":' + this.tournamentId +
+                    ',"homeTeam":' + this.teams[0].teamId +
+                    ',"awayTeam":' +this.teams[1].teamId +
+                    ',"country":' +this.countryId +
+                    ',"city":' +this.cityId +
+                    ',"neutral":' +this.type +
+                    '}',
                 };
                 console.log(data);
                 axios({
-                    method: 'post',
-                    data:data,
                     url: 'http://playcall.cn:7999/event/predict',
+                    method: 'post',
+                    data:qs.stringify(data),
+                    headers:{
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
                 }).then((res) => {
                     console.log(res);
+                    if(res.data.code===200) {//预测成功
+                        // console.log('aaa');
+                        this.$message(res.data.data.win.teamName+res.data.data.lose.teamName);
+                    }else{
+                        this.$message({
+                            showClose: true,
+                            message: res.data.msg,
+                            type: 'warning'
+                        })
+                    }
                     // this.countries=res.data.data;
                 }).catch((err)=>{
+                    // console.log(Qs.stringify(data));
                     console.log(err);
                 });
             }
@@ -251,8 +273,8 @@
   .selectitem .team{
     width: 50%;
     float: left;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    height: 12rem;
   }
 
   .selectitem .type{
@@ -261,6 +283,8 @@
     font-size: 3rem;
     font-family: btnFont;
     margin-top: 10px;
+    padding-top: 20px;
+    clear: both;
   }
 
   .selectitem img{
