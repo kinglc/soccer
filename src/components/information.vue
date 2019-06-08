@@ -89,24 +89,32 @@
                             </div>
                             <el-scrollbar id="detail">
                                 <el-row v-for="(item,index) in detailInfo" :key="index" class="detailLine">
-                                    <el-col :span="10">
+                                    <el-col :span="14">
                                         <el-row>
-                                            客场：{{item.awayTeamName}}
+                                            <el-col :span="3">
+                                                <img class="detailImg" :src="URL+'/event/img/team/'+item.awayTeamId">
+                                            </el-col>
+                                            <el-col :span="19">
+                                                客场：{{item.awayTeamName}}
+                                            </el-col>
+                                            <el-col :span="2">
+                                                {{item.awayScore}}
+                                            </el-col>
                                         </el-row>
                                         <el-row>
-                                            主场：{{item.homeTeamName}}
+                                            <el-col :span="3">
+                                                <img class="detailImg" :src="URL+'/event/img/team/'+item.homeTeamId">
+                                            </el-col>
+                                            <el-col :span="19">
+                                                主场：{{item.homeTeamName}}
+                                            </el-col>
+                                            <el-col :span="2">
+                                                {{item.homeScore}}
+                                            </el-col>
                                         </el-row>
                                     </el-col>
-                                    <el-col :span="2">
-                                        <el-row>
-                                            {{item.awayScore}}
-                                        </el-row>
-                                        <el-row>
-                                            {{item.homeScore}}
-                                        </el-row>
-                                    </el-col>
-                                    <el-col :span="12" class="place">
-                                        {{item.countryName}}--{{item.cityName}}
+                                    <el-col :span="10" class="place">
+                                        {{item.countryName}}-{{item.cityName}}
                                     </el-col>
                                 </el-row>
                             </el-scrollbar>
@@ -139,7 +147,8 @@
                 gameInfo:{},
                 tabContent:"left",
                 activeName: 'first',
-                detailInfo:[]
+                detailInfo:[],
+                URL:"http://playcall.cn:7999"
             }
         },
         methods:{
@@ -387,10 +396,15 @@
         overflow-x: hidden;
     }
     .detailLine{
-        margin-bottom: 0.5em;
+        margin-bottom: 0.8em;
     }
     .place{
         line-height: 2.5em;
+    }
+    .detailImg{
+        height: 30px;
+        width: 30px;
+        border-radius: 30px;
     }
 
     .svg-wrapper {
