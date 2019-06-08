@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="container">
-                        <span class="demonstration">选择队伍：</span>
+                        <span class="demonstration">选择国家：</span>
                         <el-select v-model="country" label-in-value="true" filterable placeholder="请选择" @change="selectTeam">
                             <el-option
                                     v-for="(item,index) in options"
@@ -64,7 +64,7 @@
                                 v-model="year"
                                 type="year"
                                 formaat="yyyy"
-                                placeholder="请选择"
+                                placeholder="请选择1972-2008"
                                 @change="selectTime">
                         </el-date-picker>
                     </div>
@@ -86,7 +86,6 @@
     import * as axios from "axios";
 
     const echarts = require('echarts');
-    var URL = 'http://playcall.cn:7999/event';
     export default {
         name: "information",
         data(){
@@ -100,6 +99,7 @@
             }
         },
         methods:{
+
             turn:function (param) {
                 this.$router.push({path:'/'+param});
             },
@@ -109,74 +109,49 @@
                 that.imageUrl =that.options[item].url;
                 that.countryId = that.options[item].id;
                 if(that.year) {
-                    console.log(that.year.getFullYear())
+                    var year=that.year.getFullYear()
+                    let data={
+                        country: that.countryId,
+                        time: year
+                    }
                     axios({
-                        url: URL + "/team/historyGameData",
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data:{
-                            country: that.countryId,
-                            time: that.year.getFullYear()
-                        }
+                        url: "http://playcall.cn:7999/event/team/historyGameData",
+                        data:data,
+                        method: 'post',
+                        headers:{'Content-Type':'application/x-www-form-urlencoded'}
                     }).then((res)=>{
+                        console.log("Succees")
                         console.log(res)
                         that.isShow=true
                         that.initCharts();//初始化柱状图
                     }).catch((err)=>{
+                        console.log("Fail")
                         console.log(res);
-                        that.$message.error('数据获取失败，请检查网络信息');
                     })
-                    // $.ajax({
-                    //     url: URL + "/team/historyGameData",
-                    //     type: 'POST',
-                    //     contentType: 'application/json',
-                    //     contry: that.countryId,
-                    //     time: that.year,
-                    //     success(res) {
-                    //         console.log(res)
-                    //     },
-                    //     error(res) {
-                    //         console.log(res);
-                    //         that.$message.error('数据获取失败，请检查网络信息');
-                    //     }
-                    // })
                 }
             },
             selectTime () {
                 var that=this
-                console.log(that.year.getFullYear())
-                // var time = that.year.getTime()/1000;
-                // console.log(time);
+                var year=that.year.getFullYear()
+                let data={
+                    country: that.countryId,
+                    time: year
+                }
                 if(that.countryId) {
                     axios({
-                        url: URL + "/team/historyGameData",
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data:{
-                            country: that.countryId,
-                            time: that.year.getFullYear()
-                        }
+                        url: "http://playcall.cn:7999/event/team/historyGameData",
+                        method: 'post',
+                        data:data,
+                        headers:{'Content-Type':'application/x-www-form-urlencoded'}
                     }).then((res)=>{
+                        console.log("Succees")
                         console.log(res)
                         that.isShow=true
+                        that.initCharts();//初始化柱状图
                     }).catch((err)=>{
+                        console.log("Fail")
                         console.log(res);
-                        that.$message.error('数据获取失败，请检查网络信息');
-                    })
-                    // $.ajax({
-                    //     url: URL + "/team/historyGameData",
-                    //     type: 'POST',
-                    //     contentType: 'application/json',
-                    //     contry: that.countryId,
-                    //     time: that.year,
-                    //     success(res) {
-                    //
-                    //     },
-                    //     error(res) {
-                    //         console.log(res);
-                    //         that.$message.error('数据获取失败，请检查网络信息');
-                    //     }
-                    // })
+                    });
                 }
             },
             initCharts () {
@@ -233,8 +208,6 @@
         },
         mounted () {
             var that=this
-            // that.initCharts();//初始化柱状图
-
             axios({
                 method: 'post',
                 url: 'http://playcall.cn:7999/event/country/list',
@@ -253,7 +226,6 @@
                 }
             }).catch((err) => {
                 console.log(err);
-                that.$message.error('数据初始化失败，请检查网络信息');
             });
         }
     }
@@ -291,22 +263,10 @@
         text-decoration: none;
         color: #FFFFFF;
     }
-    #app{
-        width: 100%;
-        height: 100%;
-    }
     /*首部*/
     #soccer{
         height: 100px;
         margin-top: -15px;
-    }
-    #flag{
-        width:100%;
-    }
-    #page{
-        border-bottom: 5px solid;
-        border-color: #FFFFFF;
-        padding-bottom:8px;
     }
     #head{
         width: 100%;
@@ -316,9 +276,6 @@
         font-family: "manu";
         font-size: 3rem;
         line-height: 1.5;
-    }
-    .el-col{
-        padding: 20px 0 0 0;
     }
     /*下半部*/
     .el-main{
@@ -335,7 +292,7 @@
         margin: 10px;
     }
     .occupy {
-        border: 1px dashed #d9d9d9;
+        border: 1px dashed rgba(255,255,255,0);
         border-radius: 100px;
         cursor: pointer;
         position: relative;
