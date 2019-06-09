@@ -2,7 +2,112 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd597ac7-9815-4e74-9d5c-895b9563ab25" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/build/webpack.prod.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.prod.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/.tonic_example.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/.tonic_example.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/dist/ajv.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/dist/nodent.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/dist/regenerator.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/$data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/cache.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/_rules.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/async.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/async.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/equal.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/equal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/error_classes.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/error_classes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/formats.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/formats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/resolve.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/resolve.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/rules.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/schema_obj.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/schema_obj.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/ucs2length.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/ucs2length.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/compile/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/compile/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/_limit.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/_limit.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/_limitItems.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/_limitItems.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/_limitLength.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/_limitLength.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/_limitProperties.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/_limitProperties.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/allOf.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/allOf.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/anyOf.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/anyOf.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/coerce.def" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/coerce.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/const.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/const.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/contains.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/contains.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/custom.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/custom.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/defaults.def" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/defaults.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/definitions.def" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/definitions.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/dependencies.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/dependencies.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/enum.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/enum.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/errors.def" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/errors.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/format.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/format.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/items.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/items.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/missing.def" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/missing.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/multipleOf.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/multipleOf.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/not.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/not.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/oneOf.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/oneOf.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/pattern.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/pattern.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/properties.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/properties.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/propertyNames.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/propertyNames.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/ref.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/ref.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/required.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/required.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/uniqueItems.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/uniqueItems.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dot/validate.jst" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/validate.jst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limit.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitLength.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitLength.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitProperties.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/_limitProperties.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/allOf.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/allOf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/anyOf.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/anyOf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/const.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/const.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/contains.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/contains.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/dependencies.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/dependencies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/enum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/format.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/format.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/items.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/items.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/multipleOf.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/multipleOf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/not.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/not.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/oneOf.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/oneOf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/pattern.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/pattern.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/properties.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/properties.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/propertyNames.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/propertyNames.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/ref.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/ref.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/required.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/required.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/uniqueItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/uniqueItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dotjs/validate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/keyword.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/keyword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/patternGroups.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/refs/$data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/refs/json-schema-draft-04.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/refs/json-schema-draft-04.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/refs/json-schema-draft-06.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/refs/json-schema-draft-06.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/refs/json-schema-v5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/.eslintrc.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/.eslintrc.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/compile-dots.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/compile-dots.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/info" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/prepare-tests" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/prepare-tests" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/travis-gh-pages" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/travis-gh-pages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/.eslintrc.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-schema-traverse/.eslintrc.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-schema-traverse/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-schema-traverse/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-schema-traverse/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-schema-traverse/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-schema-traverse/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/spec/.eslintrc.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-schema-traverse/spec/.eslintrc.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/spec/fixtures/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-schema-traverse/spec/fixtures/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-schema-traverse/spec/index.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-schema-traverse/spec/index.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,36 +124,17 @@
       <file leaf-file-name="information.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/information.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="321" column="20" selection-start-line="321" selection-start-column="20" selection-end-line="321" selection-end-column="20" />
-              <folding>
-                <element signature="n#el-col#0;n#el-row#0;n#el-main#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#el-col#1;n#el-row#0;n#el-main#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#9895#9920#0" expanded="true" />
-                <element signature="e#10650#10718#0" />
-                <element signature="e#9952#11061#0" />
-                <element signature="e#12879#13969#0" />
-                <element signature="e#13997#16486#0" />
-                <element signature="n#style#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="8041">
+              <caret line="473" column="8" selection-start-line="473" selection-start-column="8" selection-end-line="473" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/index.js">
+      <file leaf-file-name="vue-loader.conf.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/vue-loader.conf.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vue.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vue.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+            <state relative-caret-position="238">
+              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -56,8 +142,8 @@
       <file leaf-file-name="webpack.prod.conf.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build/webpack.prod.conf.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="73" column="24" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
+            <state relative-caret-position="238">
+              <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -71,46 +157,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/index.vue">
+      <file leaf-file-name="postcss.config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/postcss.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1479">
-              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#213#219#0" expanded="true" />
-                <element signature="e#219#225#0" expanded="true" />
-                <element signature="e#225#231#0" expanded="true" />
-                <element signature="e#231#237#0" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-button#0;n#span#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#676#712#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="18" selection-end-line="4" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="predict.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/predict.vue">
+      <file leaf-file-name="package-lock.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package-lock.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="129" column="22" selection-start-line="129" selection-start-column="22" selection-end-line="129" selection-end-column="43" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#el-select#0;n#div#1;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#3;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#4;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#5;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="-119552">
+              <caret line="2955" column="25" selection-start-line="2955" selection-start-column="25" selection-end-line="2955" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -213,8 +273,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="696" />
-    <option name="y" value="7" />
+    <option name="x" value="397" />
+    <option name="y" value="21" />
     <option name="width" value="1435" />
     <option name="height" value="1038" />
   </component>
@@ -258,11 +318,11 @@
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Software\web_project\soccer\src\jquery" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Software\web_project\soccer\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Software\web_project\soccer\src\jquery" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -296,10 +356,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128919000" />
+    <option name="totallyTimeSpent" value="129196000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="557" y="6" width="1148" height="830" extended-state="0" />
+    <frame x="318" y="17" width="1148" height="830" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -308,39 +368,52 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32904148" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.23462088" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24910071" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.23462088" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24910071" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32956153" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24910071" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32904148" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="7" weight="0.3281471" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32956153" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.23462088" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18295905" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="File Transfer" order="9" weight="0.3281471" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3281471" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -360,13 +433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#0;n#span#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#664#700#0" expanded="true" />
-            <element signature="e#1739#2991#0" />
-            <element signature="n#style#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -456,13 +522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="22" selection-start-line="22" selection-end-line="22" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#0;n#span#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#664#700#0" expanded="true" />
-            <element signature="e#1739#2991#0" />
-            <element signature="n#style#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -511,13 +570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" selection-start-line="22" selection-end-line="22" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#0;n#span#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#664#700#0" expanded="true" />
-            <element signature="e#1739#2991#0" />
-            <element signature="n#style#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -560,26 +612,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/postcss.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        <state>
+          <caret column="18" selection-end-line="4" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/predict.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/soccer.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/flags.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/bg.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/countries.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/predict.png" />
+    <entry file="file://$PROJECT_DIR$/src/img/soccer.png" />
+    <entry file="file://$PROJECT_DIR$/src/img/flags.png" />
+    <entry file="file://$PROJECT_DIR$/src/img/bg.png" />
+    <entry file="file://$PROJECT_DIR$/src/img/countries.png" />
     <entry file="file://$PROJECT_DIR$/src/components/nav.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1311">
@@ -616,8 +658,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-166640">
-          <caret line="332" column="9" selection-start-line="332" selection-start-column="9" selection-end-line="332" selection-end-column="9" />
+        <state relative-caret-position="-119552">
+          <caret line="2955" column="25" selection-start-line="2955" selection-start-column="25" selection-end-line="2955" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -639,9 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#140#161#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -649,9 +688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -666,19 +702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1479">
           <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#213#219#0" expanded="true" />
-            <element signature="e#219#225#0" expanded="true" />
-            <element signature="e#225#231#0" expanded="true" />
-            <element signature="e#231#237#0" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#0;n#span#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#676#712#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -704,25 +727,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/information.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="321" column="20" selection-start-line="321" selection-start-column="20" selection-end-line="321" selection-end-column="20" />
-          <folding>
-            <element signature="n#el-col#0;n#el-row#0;n#el-main#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#el-col#1;n#el-row#0;n#el-main#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="e#9895#9920#0" expanded="true" />
-            <element signature="e#10650#10718#0" />
-            <element signature="e#9952#11061#0" />
-            <element signature="e#12879#13969#0" />
-            <element signature="e#13997#16486#0" />
-            <element signature="n#style#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+        <state relative-caret-position="8041">
+          <caret line="473" column="8" selection-start-line="473" selection-start-column="8" selection-end-line="473" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -740,10 +746,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build/webpack.prod.conf.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="73" column="24" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
+        <state relative-caret-position="238">
+          <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
         </state>
       </provider>
     </entry>
