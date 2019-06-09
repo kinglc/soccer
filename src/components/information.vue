@@ -40,7 +40,7 @@
         </div>
         <el-main>
             <el-row>
-                <el-col :span="10" id="left">
+                <el-col :span="11" id="left">
                     <div class="teamPic">
                         <div class="occupy">
                             <img v-if="imageUrl" :src="imageUrl" class="avatar">
@@ -69,12 +69,12 @@
                         </el-date-picker>
                     </div>
                 </el-col>
-                <el-col :span="10" id="right">
+                <el-col :span="9" id="right">
                     <!--<el-radio-group v-model="tabContent" style="margin-bottom: 30px;">-->
                     <!--<el-radio-button label="left">基础数据</el-radio-button>-->
                     <!--<el-radio-button label="right">比赛情况</el-radio-button>-->
                     <!--</el-radio-group>-->
-                    <el-tabs v-model="activeName" type="card">
+                    <el-tabs v-model="activeName" type="card" >
                         <el-tab-pane label="基础数据" name="first">
                             <div v-if="isShow==true">
                                 请选择队伍和年份
@@ -89,35 +89,89 @@
                             </div>
                             <el-scrollbar id="detail">
                                 <el-row v-for="(item,index) in detailInfo" :key="index" class="detailLine">
-                                    <el-col :span="14">
+                                    <el-col :span="12">
                                         <el-row>
-                                            <el-col :span="3">
+                                            <el-col :span="4">
                                                 <img class="detailImg" :src="URL+'/event/img/team/'+item.awayTeamId">
                                             </el-col>
-                                            <el-col :span="19">
+                                            <el-col :span="17">
                                                 客场：{{item.awayTeamName}}
                                             </el-col>
-                                            <el-col :span="2">
+                                            <el-col :span="3">
                                                 {{item.awayScore}}
                                             </el-col>
                                         </el-row>
                                         <el-row>
-                                            <el-col :span="3">
+                                            <el-col :span="4">
                                                 <img class="detailImg" :src="URL+'/event/img/team/'+item.homeTeamId">
                                             </el-col>
-                                            <el-col :span="19">
+                                            <el-col :span="17">
                                                 主场：{{item.homeTeamName}}
                                             </el-col>
-                                            <el-col :span="2">
+                                            <el-col :span="3">
                                                 {{item.homeScore}}
                                             </el-col>
                                         </el-row>
                                     </el-col>
-                                    <el-col :span="10" class="place">
+                                    <el-col :span="12" class="place">
                                         {{item.countryName}}-{{item.cityName}}
                                     </el-col>
                                 </el-row>
                             </el-scrollbar>
+                        </el-tab-pane>
+                        <el-tab-pane label="与客队对比" name="third">
+                            <div v-if="teamId">
+                                <el-row id="against">
+                                    <el-col :span="20">
+                                            <span class="demonstration">选择客场队伍：</span>
+                                            <el-select v-model="away" filterable placeholder="请选择客场队伍" @change="selectAwayTeam">
+                                                <el-option
+                                                        v-for="(item,index) in options"
+                                                        :key="index"
+                                                        :label="item.teamName"
+                                                        :value="index">
+                                                </el-option>
+                                            </el-select>
+                                    </el-col>
+                                    <el-col :span="4">
+                                        <div class="occupy">
+                                            <img v-if="awayUrl" :src="awayUrl" class="away-avatar">
+                                            <i v-else class="el-icon-football away-avatar-uploader-icon"></i>
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                                <el-scrollbar id="away-detail">
+                                    <el-row v-for="(item,index) in againstInfo" :key="index" class="detailLine">
+                                        <el-col>
+                                            <el-row>
+                                                <el-col :span="3">
+                                                    <img class="detailImg" :src="imageUrl">
+                                                </el-col>
+                                                <el-col :span="12">
+                                                    {{GLOBAL.teams[team].teamName}}
+                                                </el-col>
+                                                <el-col :span="2">
+                                                    {{ item.homeScore}}
+                                                </el-col>
+                                            </el-row>
+                                            <el-row>
+                                                <el-col :span="3">
+                                                    <img class="detailImg" :src="awayUrl">
+                                                </el-col>
+                                                <el-col :span="12">
+                                                    {{awayTeamName}}
+                                                </el-col>
+                                                <el-col :span="2">
+                                                    {{ item.awayScore}}
+                                                </el-col>
+                                            </el-row>
+                                        </el-col>
+                                    </el-row>
+                                </el-scrollbar>
+                         </div>
+                            <div v-else>
+                                请选择主场队伍
+                            </div>
                         </el-tab-pane>
                     </el-tabs>
                 </el-col>
@@ -148,7 +202,12 @@
                 tabContent:"left",
                 activeName: 'first',
                 detailInfo:[],
-                URL:"http://playcall.cn:7999"
+                URL:"http://playcall.cn:7999",
+                away:'',
+                awayTeamId:'',
+                awayUrl:'',
+                awayTeamName:'',
+                againstInfo:[],
             }
         },
         methods:{
@@ -157,6 +216,30 @@
                 this.$router.push({path:'/'+param});
             },
 
+            // 选择客队
+            selectAwayTeam (item){
+                var that=this
+                console.log(that.options[item].teamName)
+                that.awayUrl =that.options[item].imgUrl;
+                that.awayTeamId = that.options[item].teamId;
+                that.awayTeamName = that.options[item].teamName;
+                let data={
+                    homeTeam: that.teamId,
+                    awayTeam: that.awayTeamId,
+                }
+                axios({
+                    url: "http://playcall.cn:7999/event/team/against",
+                    data:qs.stringify(data),
+                    method: 'post',
+                    headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'}
+                }).then((res)=>{
+                    that.againstInfo=res.data.data
+                    console.log(that.againstInfo)
+                }).catch((err)=>{
+                    console.log(err);
+                })
+            },
+            // 选择主队
             selectTeam (item) {
                 var that=this
                 that.imageUrl =that.options[item].imgUrl;
@@ -175,11 +258,11 @@
                     }).then((res)=>{
                         that.gameInfo=res.data.data
                         that.detailInfo=res.data.data.thisYearDetailGameInfo
-                        console.log(detailInfo)
+                        console.log(that.detailInfo)
                         that.initCharts();//初始化柱状图
                         that.isShow=false
                     }).catch((err)=>{
-                        console.log(res);
+                        console.log(err);
                     })
                 }
             },
@@ -200,14 +283,13 @@
                         data:qs.stringify(data),
                         headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'}
                     }).then((res)=>{
-                        console.log(res)
                         that.gameInfo=res.data.data
                         that.detailInfo=res.data.data.thisYearDetailGameInfo
                         console.log(that.detailInfo)
                         that.initCharts();//初始化柱状图
-                        that.isShow=false
+                        that.isShow=false;
                     }).catch((err)=>{
-                        console.log(res);
+                        console.log(err);
                     });
                 }
             },
@@ -336,13 +418,13 @@
     }
     #left{
         padding-top: 3%;
-        padding-left: 7%;
+        padding-left: 7.5%;
         height: 100%;
         margin: 0 auto;
     }
     .container{
         text-align: center;
-        margin: 50px;
+        margin: 40px;
     }
     /*国旗图片*/
     .teamPic{
@@ -369,6 +451,17 @@
         height: 122px;
         display: block;
     }
+    .away-avatar-uploader-icon {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+    .away-avatar{
+        width: 50px;
+        height: 50px;
+        display: block;
+    }
 
     #right{
         height: 100%;
@@ -380,19 +473,33 @@
     }
     .el-tabs >>> .el-tabs__nav{
         background-color: #ffffff;
+        /*padding: 0 50px;*/
     }
-
-    /*.el-tabs >>> .el-tabs__content{*/
-        /*background-color: #ffffff;*/
-    /*}*/
+    .el-tabs >>> .el-tabs__header{
+        margin: 0 auto;
+    }
+    .el-tabs >>> .el-tabs__content{
+        height: 400px;
+        background-color: rgba(255,255,255,0.8);
+        padding: 10px;
+        font-size: 0.9em;
+        color: #154f18;
+    }
     .echart{
         height: 400px;
     }
     #detail{
         height: 400px;
-        font-size: 0.9em;
+        font-size: 0.8em;
     }
     #detail >>> .el-scrollbar__wrap {
+        overflow-x: hidden;
+    }
+    #away-detail{
+        height: 350px;
+        font-size: 0.9em;
+    }
+    #away-detail >>> .el-scrollbar__wrap {
         overflow-x: hidden;
     }
     .detailLine{
