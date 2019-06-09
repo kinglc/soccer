@@ -42,7 +42,7 @@
                 var colors = ['#dc2129', '#52b15d', '#f6a504', '#2e81bf', '#020c1f']; //Math.random()*5
                 var entry = {
                     label: this.GLOBAL.teams[i].teamName,
-                    url: 'pages/information.html',
+                    url: 'http://localhost:8080/#/information?teamIndex='+i,
                     fontColor: colors[Math.floor(Math.random() * 4)],
                 };
                 entries[i] = entry;

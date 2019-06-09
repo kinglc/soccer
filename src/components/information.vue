@@ -1,46 +1,9 @@
 <template>
     <div id="info">
-        <div id="head">
-            <el-row>
-                <el-col :span="3"><a @click="turn('index')"><img src="../../static/soccer.png" alt="soccer" id="soccer"></a> </el-col>
-                <el-col :span="6">
-                    <div class="svg-wrapper" @click="turn('index')">
-                        <svg height="70" width="240" xmlns="http://www.w3.org/2000/svg">
-                            <rect id="index-shape" height="70" width="240" />
-                            <div class="text">
-                                <span class="spot"></span>
-                            </div>
-                        </svg>
-                        <div class="text">主页</div>
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="svg-wrapper" @click="turn('information')">
-                        <svg height="70" width="240" xmlns="http://www.w3.org/2000/svg">
-                            <rect id="shape" height="70" width="240" ></rect>
-                            <div class="text">
-                                <span class="spot"></span>
-                            </div>
-                        </svg>
-                        <div class="text">队伍信息</div>
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="svg-wrapper" @click="turn('predict')">
-                        <svg height="70" width="240" xmlns="http://www.w3.org/2000/svg">
-                            <rect id="shape" height="70" width="240" ></rect>
-                            <div class="text">
-                                <span class="spot"></span>
-                            </div>
-                        </svg>
-                        <div class="text">模拟比赛</div>
-                    </div>
-                </el-col>
-            </el-row>
-        </div>
+        <Navi></Navi>
         <el-main>
             <el-row>
-                <el-col :span="12" id="left">
+                <el-col :span="11" id="left">
                     <div class="teamPic">
                         <div class="occupy">
                             <img v-if="imageUrl" :src="imageUrl" class="avatar">
@@ -48,12 +11,12 @@
                         </div>
                     </div>
                     <div class="container">
-                        <span class="demonstration">选择国家：</span>
-                        <el-select v-model="country" label-in-value="true" filterable placeholder="请选择" @change="selectTeam">
+                        <span class="demonstration">选择队伍：</span>
+                        <el-select v-model="team" label-in-value="true" filterable placeholder="请选择队伍" @change="selectTeam">
                             <el-option
                                     v-for="(item,index) in options"
-                                    :key="item.id"
-                                    :label="item.name"
+                                    :key="item.teamId"
+                                    :label="item.teamName"
                                     :value="index">
                             </el-option>
                         </el-select>
@@ -64,15 +27,116 @@
                                 v-model="year"
                                 type="year"
                                 formaat="yyyy"
-                                placeholder="请选择1972-2008"
+                                placeholder="请在1872-2008间选择"
                                 @change="selectTime">
                         </el-date-picker>
                     </div>
                 </el-col>
-                <el-col :span="11" id="right">
-                    <div  class="echart"  id="chart"  ref="chart">
+                <el-col :span="9" id="right">
+                    <!--<el-radio-group v-model="tabContent" style="margin-bottom: 30px;">-->
+                    <!--<el-radio-button label="left">基础数据</el-radio-button>-->
+                    <!--<el-radio-button label="right">比赛情况</el-radio-button>-->
+                    <!--</el-radio-group>-->
+                    <el-tabs v-model="activeName" type="card" >
+                        <el-tab-pane label="基础数据" name="first">
+                            <div v-if="isShow==true">
+                                请选择队伍和年份
+                            </div>
+                            <div  class="echart"  id="chart"  ref="chart">
 
-                    </div>
+                            </div>
+                        </el-tab-pane>
+                        <el-tab-pane label="比赛情况" name="second">
+                            <div v-if="isShow">
+                                请选择队伍和年份
+                            </div>
+                            <el-scrollbar id="detail">
+                                <el-row v-for="(item,index) in detailInfo" :key="index" class="detailLine">
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="4">
+                                                <img class="detailImg" :src="URL+'/event/img/team/'+item.awayTeamId">
+                                            </el-col>
+                                            <el-col :span="17">
+                                                客场：{{item.awayTeamName}}
+                                            </el-col>
+                                            <el-col :span="3">
+                                                {{item.awayScore}}
+                                            </el-col>
+                                        </el-row>
+                                        <el-row>
+                                            <el-col :span="4">
+                                                <img class="detailImg" :src="URL+'/event/img/team/'+item.homeTeamId">
+                                            </el-col>
+                                            <el-col :span="17">
+                                                主场：{{item.homeTeamName}}
+                                            </el-col>
+                                            <el-col :span="3">
+                                                {{item.homeScore}}
+                                            </el-col>
+                                        </el-row>
+                                    </el-col>
+                                    <el-col :span="12" class="place">
+                                        {{item.countryName}}-{{item.cityName}}
+                                    </el-col>
+                                </el-row>
+                            </el-scrollbar>
+                        </el-tab-pane>
+                        <el-tab-pane label="与客队对比" name="third">
+                            <div v-if="teamId">
+                                <el-row id="against">
+                                    <el-col :span="20">
+                                        <span class="demonstration">选择客场队伍：</span>
+                                        <el-select v-model="away" filterable placeholder="请选择客场队伍" @change="selectAwayTeam">
+                                            <el-option
+                                                    v-for="(item,index) in options"
+                                                    :key="index"
+                                                    :label="item.teamName"
+                                                    :value="index">
+                                            </el-option>
+                                        </el-select>
+                                    </el-col>
+                                    <el-col :span="4">
+                                        <div class="occupy">
+                                            <img v-if="awayUrl" :src="awayUrl" class="away-avatar">
+                                            <i v-else class="el-icon-football away-avatar-uploader-icon"></i>
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                                <el-scrollbar id="away-detail">
+                                    <el-row v-for="(item,index) in againstInfo" :key="index" class="detailLine">
+                                        <el-col>
+                                            <el-row>
+                                                <el-col :span="3">
+                                                    <img class="detailImg" :src="imageUrl">
+                                                </el-col>
+                                                <el-col :span="12">
+                                                    {{GLOBAL.teams[team].teamName}}
+                                                </el-col>
+                                                <el-col :span="2">
+                                                    {{ item.homeScore}}
+                                                </el-col>
+                                            </el-row>
+                                            <el-row>
+                                                <el-col :span="3">
+                                                    <img class="detailImg" :src="awayUrl">
+                                                </el-col>
+                                                <el-col :span="12">
+                                                    {{awayTeamName}}
+                                                </el-col>
+                                                <el-col :span="2">
+                                                    {{ item.awayScore}}
+                                                </el-col>
+                                            </el-row>
+                                        </el-col>
+                                    </el-row>
+                                </el-scrollbar>
+                            </div>
+                            <div v-else>
+                                请选择主场队伍
+                            </div>
+                        </el-tab-pane>
+                    </el-tabs>
                 </el-col>
             </el-row>
         </el-main>
@@ -83,47 +147,88 @@
 
 
 <script>
-    import * as axios from "axios";
+    import Navi from "./nav";
+    import * as axios from "axios"
+    import qs from 'qs'
     const echarts = require('echarts');
     export default {
         name: "information",
+        components: {Navi},
         data(){
             return{
                 year: '',
-                isShow: false,
+                isShow: true,
                 options: [],
-                country: '',
-                countryId: '',
-                imageUrl: ''
+                team: '',
+                teamId: '',
+                imageUrl: '',
+                gameInfo:{},
+                tabContent:"left",
+                activeName: 'first',
+                detailInfo:[],
+                URL:"http://playcall.cn:7999",
+                away:'',
+                awayTeamId:'',
+                awayUrl:'',
+                awayTeamName:'',
+                againstInfo:[],
             }
         },
         methods:{
             turn:function (param) {
                 this.$router.push({path:'/'+param});
             },
+            // 选择客队
+            selectAwayTeam (item){
+                var that=this
+                console.log(that.options[item].teamName)
+                that.awayUrl =that.options[item].imgUrl;
+                that.awayTeamId = that.options[item].teamId;
+                that.awayTeamName = that.options[item].teamName;
+                let data={
+                    homeTeam: that.teamId,
+                    awayTeam: that.awayTeamId,
+                }
+                axios({
+                    url: "http://playcall.cn:7999/event/team/against",
+                    data:qs.stringify(data),
+                    method: 'post',
+                    headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'}
+                }).then((res)=>{
+                    console.log(res);
+                    if(res.data.data.length===0){
+                        this.$message('两队暂无比赛信息');
+                    }else {
+                        that.againstInfo = res.data.data;
+                    }
+                }).catch((err)=>{
+                    console.log(err);
+                })
+            },
+            // 选择主队
             selectTeam (item) {
                 var that=this
-                that.imageUrl =that.options[item].url;
-                that.countryId = that.options[item].id;
+                that.imageUrl =that.options[item].imgUrl;
+                that.teamId = that.options[item].teamId;
                 if(that.year) {
                     var year=that.year.getFullYear()
                     let data={
-                        country: that.countryId,
+                        team: that.teamId,
                         time: year
                     }
                     axios({
                         url: "http://playcall.cn:7999/event/team/historyGameData",
-                        data:data,
+                        data:qs.stringify(data),
                         method: 'post',
-                        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+                        headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'}
                     }).then((res)=>{
-                        console.log("Succees")
-                        console.log(res)
-                        that.isShow=true
+                        that.gameInfo=res.data.data
+                        that.detailInfo=res.data.data.thisYearDetailGameInfo
+                        console.log(that.detailInfo)
                         that.initCharts();//初始化柱状图
+                        that.isShow=false
                     }).catch((err)=>{
-                        console.log("Fail")
-                        console.log(res);
+                        console.log(err);
                     })
                 }
             },
@@ -131,37 +236,41 @@
                 var that=this
                 var year=that.year.getFullYear()
                 let data={
-                    country: that.countryId,
+                    team: that.teamId,
                     time: year
                 }
-                if(that.countryId) {
+                if(year<1872||year>2008){
+                    alert("请在1872年至2008年间选择！")
+                }
+                else if(that.teamId) {
                     axios({
                         url: "http://playcall.cn:7999/event/team/historyGameData",
                         method: 'post',
-                        data:data,
-                        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+                        data:qs.stringify(data),
+                        headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'}
                     }).then((res)=>{
-                        console.log("Succees")
-                        console.log(res)
-                        that.isShow=true
+                        that.gameInfo=res.data.data
+                        that.detailInfo=res.data.data.thisYearDetailGameInfo
+                        console.log(that.detailInfo)
                         that.initCharts();//初始化柱状图
+                        that.isShow=false;
                     }).catch((err)=>{
-                        console.log("Fail")
-                        console.log(res);
+                        console.log(err);
                     });
                 }
             },
             initCharts () {
+                var that=this
                 let myChart = echarts.init(this.$refs.chart);
                 // 绘制图表
                 myChart.setOption({
+                    backgroundColor:'#FFFFFF',
                     tooltip: {
                         show: true
                     },
                     legend: {
-                        data:[
-                            '本队','ECharts1 - 2w数据','ECharts1 - 20w数据'
-                        ]
+                        x:'left',
+                        data:['平均数','全年数','总数']
                     },
                     toolbox: {
                         feature : {
@@ -185,44 +294,41 @@
                     ],
                     series : [
                         {
-                            "name":"平均值",
+                            "name":"平均数",
                             "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
+                            "data":[that.gameInfo.averageScore, that.gameInfo.averageHomeWins, that.gameInfo.averageAwayWins,
+                                that.gameInfo.averageNeutrals, that.gameInfo.averageMarginScore]
                         },
                         {
-                            "name":"本年",
+                            "name":"全年数",
                             "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
+                            "data":[that.gameInfo.thisYearScore, that.gameInfo.thisYearHomeWins, that.gameInfo.thisYearAwayWins,
+                                that.gameInfo.thisYearNeutrals, that.gameInfo.thisYearMarginScore]
                         },
                         {
                             "name":"总数",
                             "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
+                            "data":[that.gameInfo.totalScore, that.gameInfo.totalHomeWins, that.gameInfo.totalAwayWins,
+                                that.gameInfo.totalNeutrals, that.gameInfo.totalMarginScore]
                         }
-                    ]
+                    ],
+                    grid:{
+                        x:40,
+                        x2:10,
+                    }
                 });
             }
         },
         mounted () {
-            var that=this
-            axios({
-                method: 'post',
-                url: 'http://playcall.cn:7999/event/country/list',
-            }).then((res) => {
-                console.log(res.data);
-                var entries = [];
-                for(var i = 0;i<100; i++) {
-                    var entry = {
-                        name: res.data.data[i].countryName,
-                        url: res.data.data[i].imgUrl,
-                        id: res.data.data[i].countryId
-                    };
-                    entries[i] = entry;
-                    that.options.push(entries[i]);
-                }
-            }).catch((err) => {
-                console.log(err);
-            });
+            this.options = this.GLOBAL.teams;
+            var url = window.location.href;
+            var s=url.split("=");
+            if(s.length>1) {
+                var index = parseInt(s[1]);
+                this.imageUrl = this.options[index].imgUrl;
+                this.teamId = this.options[index].teamId;
+                this.team = this.options[index].teamName;
+            }
         }
     }
 </script>
@@ -259,29 +365,25 @@
         text-decoration: none;
         color: #FFFFFF;
     }
-    /*首部*/
-    #soccer{
-        height: 100px;
-        margin-top: -15px;
-    }
-    #head{
-        width: 100%;
-        padding: 0 0;
-        text-align: center;
-        vertical-align: middle;
-        font-family: "manu";
-        font-size: 3rem;
-        line-height: 1.5;
+    #head .el-col{
+        padding: 20px 0 0 0;
     }
     /*下半部*/
     .el-main{
         padding: 0 0 5% 5%;
         font-size: 1.5rem;
         overflow: visible;
+        height: 100%;
+    }
+    #left{
+        padding-top: 3%;
+        padding-left: 7.5%;
+        height: 100%;
+        margin: 0 auto;
     }
     .container{
         text-align: center;
-        margin: 20px;
+        margin: 40px;
     }
     /*国旗图片*/
     .teamPic{
@@ -308,55 +410,65 @@
         height: 122px;
         display: block;
     }
+    .away-avatar-uploader-icon {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+    .away-avatar{
+        width: 50px;
+        height: 50px;
+        display: block;
+    }
+    #right{
+        height: 100%;
+        /*background-color: rgba(255,255,255);*/
+        margin-top: 2%;
+    }
+    el-tabs{
+        height: 100%;
+    }
+    .el-tabs >>> .el-tabs__nav{
+        background-color: #ffffff;
+        /*padding: 0 50px;*/
+    }
+    .el-tabs >>> .el-tabs__header{
+        margin: 0 auto;
+    }
+    .el-tabs >>> .el-tabs__content{
+        height: 400px;
+        background-color: rgba(255,255,255,0.8);
+        padding: 10px;
+        font-size: 0.9em;
+        color: #154f18;
+    }
     .echart{
         height: 400px;
     }
-    .svg-wrapper {
-        margin-top: 0;
-        position: relative;
-        width: 240px;
-        height: 70px;
-        display: inline-block;
-        border-radius: 3px;
-        margin-left: 5px;
-        margin-right: 5px
+    #detail{
+        height: 400px;
+        font-size: 0.8em;
     }
-    #shape {
-        stroke-width: 6px;
-        fill: transparent;
-        stroke: #ffffff;/* 放上去之前的颜色 */
-        stroke-dasharray: 240 400;
-        stroke-dashoffset: -310;
-        transition: 1s all ease;
+    #detail >>> .el-scrollbar__wrap {
+        overflow-x: hidden;
     }
-    #index-shape {
-        stroke-width: 6px;
-        fill: transparent;
-        stroke: white;/* 主页放上去之前的颜色 */
-        stroke-dasharray: 140 400;
-        stroke-dashoffset: -360;
-        transition: 1s all ease;
+    #away-detail{
+        height: 350px;
+        font-size: 0.9em;
     }
-    .text {
-        margin-top: -90px;
-        text-align: center;
-        z-index: 1000;
-        color: white;
+    #away-detail >>> .el-scrollbar__wrap {
+        overflow-x: hidden;
     }
-    .svg-wrapper:hover #shape {
-        stroke-dasharray: 30 0;
-        stroke-width: 5px;/* 放上去之后边框的宽度 */
-        stroke-dashoffset: 0;
-        stroke: #f0e352;/* 放上去之后边框的颜色 */
+    .detailLine{
+        margin-bottom: 0.8em;
     }
-    .svg-wrapper:hover {
-        background-color: rgba(0,0,0,0.5);/* 放上去之后填充色 */
-        cursor:pointer;
+    .place{
+        line-height: 2.5em;
     }
-    .svg-wrapper:hover #index-shape {
-        stroke-dasharray: 30 0;
-        stroke-width: 5px;/* 主页放上去之后边框的宽度 */
-        stroke-dashoffset: 0;
-        stroke: #f0e352;/* 主页放上去之后边框的颜色 */
+    .detailImg{
+        height: 30px;
+        width: 30px;
+        border-radius: 30px;
     }
 </style>
