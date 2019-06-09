@@ -124,12 +124,12 @@
     #teams::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 5px rgba(205, 238, 211, 0.6);
-        background: #ecfff0;
+        background: #fff;
     }
     #teams::-webkit-scrollbar-track {/*滚动条里面轨道*/
-        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0);
         border-radius: 10px;
-        background: rgba(0,0,0,0.2);
+        background: rgba(0,0,0,0);
     }
 
     .team{

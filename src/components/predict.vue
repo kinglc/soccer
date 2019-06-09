@@ -1,7 +1,51 @@
 <template>
 <div id="predict">
-
   <navi></navi>
+  <el-dialog
+          title="预测结果"
+          :visible.sync="show"
+          width="30%"
+          @opened="openResult"
+          @close="closeResult"
+          center>
+    <div class="result">
+      <!--<div class="item">-->
+        <!--<img :src='teams[0].imgUrl' />-->
+        <!--<div class="name">{{teams[0].teamName}} </div>-->
+        <!--<div class="score">{{scores[0]}}</div>-->
+      <!--</div>-->
+      <!--<div id="vs">-->
+        <!--<img src="../../static/vs.png" />-->
+      <!--</div>-->
+      <!--<div class="item">-->
+        <!--<img :src='teams[1].imgUrl' />-->
+        <!--<div class="name">{{teams[1].teamName}} </div>-->
+        <!--<div class="score">{{scores[1]}}</div>-->
+      <!--</div>-->
+      <el-row>
+        <el-col :span="10">
+          <div class="item">
+            <img class="timg" :src='teams[0].imgUrl' />
+            <div class="name">{{teams[0].teamName}} </div>
+            <div class="score">{{scores[0]}}</div>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <img src="../../static/vs.png" />
+        </el-col>
+        <el-col :span="10">
+          <div class="item">
+            <img class="timg" :src='teams[1].imgUrl' />
+            <div class="name">{{teams[1].teamName}} </div>
+            <div class="score">{{scores[1]}}</div>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="show = false">确定</el-button>
+    </span>
+  </el-dialog>
   <div id="content">
     <div class="half" style="float: left;"><team v-on:getTeam="setLeft"></team></div>
     <div class="select">
@@ -51,11 +95,13 @@
         </el-select>
       </div>
       <div class="selectitem" @change="setType">
-        <el-radio v-model="type" label="1" border>主客场</el-radio>
-        <el-radio v-model="type" label="0" border>友谊赛</el-radio>
+        <el-radio-group v-model="type" fill="#303030">
+          <el-radio-button label="0" border>主客场</el-radio-button>
+          <el-radio-button label="1" border>友谊赛</el-radio-button>
+        </el-radio-group>
       </div>
       <div class="selectitem">
-        <el-button @click="submit">开始预测</el-button>
+        <button @click="submit">开始预测</button>
       </div>
     </div>
     <div class="half" style="float: right;margin-right: 20px;"><team v-on:getTeam="setRight"></team></div>
@@ -91,7 +137,8 @@
           cityId:'',
           tournaments:[],
           tournamentId:'',
-               
+          show:false,
+          scores:[],
       }
     },
     mounted(){
@@ -142,16 +189,17 @@
         },
 
         setType:function () {
-            var types = document.getElementsByClassName('type');1
-            if(this.type==="0"){
+            var types = document.getElementsByClassName('type');
+            if(this.type==="1"){
                 this.types=["友","谊"];
-                types[0].style.color="#acf0ae";
-                types[1].style.color="#acf0ae";
+                types[0].style.color="#f0e352";
+                types[1].style.color="#f0e352";
+
             }
-            else if(this.type==="1"){
+            else if(this.type==="0"){
                 this.types=["主","客"];
-                types[0].style.color="#D21034";
-                types[1].style.color="#00247D";
+                types[0].style.color="#ea351b"; /*#ea351b*/
+                types[1].style.color="#1a3c7d"; /*#1a3c7d*/
             }
         },
 
@@ -206,9 +254,10 @@
                     },
                 }).then((res) => {
                     console.log(res);
-                    if(res.data.code===200) {//预测成功
-                        // console.log('aaa');
-                        this.$message(res.data.data.win.teamName+res.data.data.lose.teamName);
+                    if(res.data.code===200) {
+                        this.scores[0]=res.data.data.score.homeScore;
+                        this.scores[1]=res.data.data.score.awayScore;
+                        this.show=true;
                     }else{
                         this.$message({
                             showClose: true,
@@ -216,12 +265,41 @@
                             type: 'warning'
                         })
                     }
-                    // this.countries=res.data.data;
                 }).catch((err)=>{
-                    // console.log(Qs.stringify(data));
                     console.log(err);
                 });
             }
+        },
+
+        openResult:function () {
+            console.log('a');
+            var imgs = document.getElementsByClassName('timg');
+            var scores = document.getElementsByClassName('score');
+            console.log(imgs);
+            console.log(scores);
+            if(this.scores[0]>this.scores[1]){
+                console.log('000');
+                imgs[0].style.boxShadow = "2px 5px 5px #FFE04B";
+                imgs[0].style.transform="scale(1.2)";
+                scores[0].style.color = "red";
+            }else if(this.scores[1]>this.scores[0]) {
+                console.log('111');
+                imgs[1].style.transform="scale(1.2)";
+                imgs[1].style.boxShadow = "2px 5px 5px #FFE04B";
+                scores[1].style.color = "red"
+            }
+        },
+
+        closeResult:function () {
+            console.log('---');
+            var imgs = document.getElementsByClassName('timg');
+            var scores = document.getElementsByClassName('score');
+            imgs[0].style.boxShadow = "2px 2px 2px #717171";
+            imgs[1].style.boxShadow = "2px 2px 2px #717171";
+            imgs[0].style.transform = "scale(1)";
+            imgs[1].style.transform = "scale(1)";
+            scores[0].style.color="#a6a6a6";
+            scores[1].style.color="#a6a6a6";
         },
 
     }
@@ -250,7 +328,6 @@
   }
 
   #content {
-    /*background-color: rgba(0, 0, 0, 0.2);*/
     height: 85%;
     width: 100%;
   }
@@ -270,6 +347,13 @@
     text-align: center;
   }
 
+  .selectitem{
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
   .selectitem .team{
     width: 50%;
     float: left;
@@ -279,23 +363,72 @@
 
   .selectitem .type{
     text-align: center;
-    color: #acf0ae;
+    color: #f0e352;
     font-size: 3rem;
-    font-family: btnFont;
-    margin-top: 10px;
     padding-top: 20px;
     clear: both;
   }
 
   .selectitem img{
-    width: 6rem;
+    width: 7.5rem;
     margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #303030;
   }
 
-  .selectitem{
-    margin-bottom:20px;
+  button{
+    background-color: #f0e352; /*f0e352*/
+    width: 12rem;
+    height: 3.3rem;
+    border-radius: 4rem;
+    /*border: none;*/
+    font-size: 1.4rem;
+    color: #303030;
+    font-weight: bold;
+    font-family: btnFont;
+    cursor: pointer;
+    border: 2px solid #fff;
+    outline: none;
   }
 
+  button:hover{
+    background-color: #f0f070;
+  }
+
+  el-dialog{
+    background-color: red;
+  }
+
+  .result{
+    text-align: center;
+    margin-bottom: -10px;
+  }
+  
+  .result .item img{
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 2px #717171;
+  }
+
+  .result .item .name{
+    margin-top: 30px;
+    font-weight: bold;
+  }
+
+  .result .item .score{
+    font-size: 3rem;
+    color: #a6a6a6;
+  }
+  
+  .result img{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    margin-top: 20px;
+  }
 
 
 </style>
