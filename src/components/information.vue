@@ -39,16 +39,13 @@
                     <!--</el-radio-group>-->
                     <el-tabs v-model="activeName" type="card" >
                         <el-tab-pane label="基础数据" name="first">
-                            <div v-if="isShow==true">
-                                请选择队伍和年份
-                            </div>
                             <div  class="echart"  id="chart"  ref="chart">
 
                             </div>
                         </el-tab-pane>
                         <el-tab-pane label="比赛情况" name="second">
                             <div v-if="isShow">
-                                请选择队伍和年份
+                                请选择正确的队伍和年份
                             </div>
                             <el-scrollbar id="detail">
                                 <el-row v-for="(item,index) in detailInfo" :key="index" class="detailLine">
@@ -151,6 +148,9 @@
     import * as axios from "axios"
     import qs from 'qs'
     const echarts = require('echarts');
+
+    var myChart
+
     export default {
         name: "information",
         components: {Navi},
@@ -211,6 +211,7 @@
                 that.imageUrl =that.options[item].imgUrl;
                 that.teamId = that.options[item].teamId;
                 if(that.year) {
+                    myChart.showLoading();
                     var year=that.year.getFullYear()
                     let data={
                         team: that.teamId,
@@ -222,11 +223,18 @@
                         method: 'post',
                         headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'}
                     }).then((res)=>{
-                        that.gameInfo=res.data.data
-                        that.detailInfo=res.data.data.thisYearDetailGameInfo
-                        console.log(that.detailInfo)
-                        that.initCharts();//初始化柱状图
-                        that.isShow=false
+                        if(res.data.data.length===0){
+                            this.$message('暂无比赛信息');
+                        }else {
+                            that.gameInfo=res.data.data
+                            that.detailInfo=res.data.data.thisYearDetailGameInfo
+                            myChart.hideLoading();
+                            that.setCharts();//初始化柱状图
+                            if(that.detailInfo.length!=0)
+                            {
+                                that.isShow=false
+                            }
+                        }
                     }).catch((err)=>{
                         console.log(err);
                     })
@@ -243,31 +251,55 @@
                     alert("请在1872年至2008年间选择！")
                 }
                 else if(that.teamId) {
+                    myChart.showLoading();
                     axios({
                         url: "http://playcall.cn:7999/event/team/historyGameData",
                         method: 'post',
                         data:qs.stringify(data),
                         headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'}
                     }).then((res)=>{
-                        that.gameInfo=res.data.data
-                        that.detailInfo=res.data.data.thisYearDetailGameInfo
-                        console.log(that.detailInfo)
-                        that.initCharts();//初始化柱状图
-                        that.isShow=false;
+                        if(res.data.data.length===0){
+                            this.$message('暂无比赛信息');
+                        }else {
+                            that.gameInfo=res.data.data
+                            that.detailInfo=res.data.data.thisYearDetailGameInfo
+                            console.log(that.detailInfo)
+                            myChart.hideLoading();
+                            that.setCharts();//初始化柱状图
+                            if(that.detailInfo.length!=0)
+                            {
+                                that.isShow=false
+                            }
+                        }
                     }).catch((err)=>{
                         console.log(err);
                     });
                 }
             },
-            initCharts () {
+            setCharts(){
                 var that=this
-                let myChart = echarts.init(this.$refs.chart);
                 // 绘制图表
                 myChart.setOption({
                     backgroundColor:'#FFFFFF',
                     tooltip: {
-                        show: true
+                        show: true,
+                        trigger: 'axis',
+                        axisPointer : {
+                            type : 'shadow'
+                        }
                     },
+                    dataZoom: [
+                        {
+                            type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                            start: 10,      // 左边在 10% 的位置。
+                            end: 60         // 右边在 60% 的位置。
+                        },
+                        {
+                            type: 'inside', // 这个 dataZoom 组件是 inside 型 dataZoom 组件
+                            start: 10,      // 左边在 10% 的位置。
+                            end: 60         // 右边在 60% 的位置。
+                        }
+                    ],
                     legend: {
                         x:'left',
                         data:['平均数','全年数','总数']
@@ -279,7 +311,13 @@
                             magicType : {show: true, type: ['line', 'bar']},
                             restore : {show: true},
                             saveAsImage : {show: true}
-                        }
+                        },
+                        feature: {
+                                magicType: {
+                                    type: ['stack', 'tiled','line', 'bar']
+                                },
+                                dataView: {}
+                        },
                     },
                     xAxis : [
                         {
@@ -315,6 +353,67 @@
                     grid:{
                         x:40,
                         x2:10,
+                    },
+                    animationEasing: 'elasticOut',
+                    animationDelayUpdate: function (idx) {
+                        return idx * 5;
+                    }
+                });
+            },
+            initCharts () {
+                var that=this
+                myChart = echarts.init(document.getElementById('chart'));
+                // myChart.showLoading();
+                // 绘制图表
+                myChart.setOption({
+                    backgroundColor:'#FFFFFF',
+                    tooltip: {
+                        show: true
+                    },
+                    legend: {
+                        x:'left',
+                        data:['平均数','全年数','总数']
+                    },
+                    toolbox: {
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            magicType : {show: true, type: ['line', 'bar']},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ["进球数","主场胜利数","客场胜利数","中立场胜利数","净进球数"]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            "name":"平均数",
+                            "type":"bar",
+                            "data":[]
+                        },
+                        {
+                            "name":"全年数",
+                            "type":"bar",
+                            "data":[]
+                        },
+                        {
+                            "name":"总数",
+                            "type":"bar",
+                            "data":[]
+                        }
+                    ],
+                    grid:{
+                        x:40,
+                        x2:10,
                     }
                 });
             }
@@ -329,6 +428,7 @@
                 this.teamId = this.options[index].teamId;
                 this.team = this.options[index].teamName;
             }
+            this.initCharts()
         }
     }
 </script>
@@ -433,6 +533,12 @@
         background-color: #ffffff;
         /*padding: 0 50px;*/
     }
+    .el-tabs >>>  .el-tabs__nav :hover{
+        color: rgba(60, 226, 69, 0.61);
+    }
+    .el-tabs >>>  .is-active{
+        color: rgba(60, 226, 69, 0.61);
+    }
     .el-tabs >>> .el-tabs__header{
         margin: 0 auto;
     }
@@ -445,6 +551,7 @@
     }
     .echart{
         height: 400px;
+        width: auto;
     }
     #detail{
         height: 400px;
