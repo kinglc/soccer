@@ -5,7 +5,7 @@
       <paths name="kingc">
         <serverdata>
           <mappings>
-            <mapping deploy="/usr/webs" local="$PROJECT_DIR$" web="/soccer" />
+            <mapping deploy="/usr/webs" local="$PROJECT_DIR$/dist" web="/soccer" />
           </mappings>
         </serverdata>
       </paths>
