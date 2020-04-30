@@ -15,7 +15,7 @@
     "cssnano": "^4.1.10",
     "echarts": "^4.2.1",
     "element-ui": "^2.8.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "qs": "latest",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
